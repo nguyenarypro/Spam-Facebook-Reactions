@@ -1,0 +1,175 @@
+<!-- CODE BY NGUYÊN ARY -->
+<!doctype html>
+<html lang="en" dir="ltr">
+<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="msapplication-TileColor" content="#0061da">
+		<meta name="theme-color" content="#1643a3">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"/>
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="mobile-web-app-capable" content="yes">
+		<meta name="HandheldFriendly" content="True">
+		<meta name="MobileOptimized" content="320">
+		<link rel="icon" href="https://codevn.info/favicon.ico" type="image/x-icon"/>
+		<link rel="shortcut icon" type="image/x-icon" href="https://codevn.info/favicon.ico" />
+		<title>Bão Cảm Xúc Tường Bạn Bè - CodeVN.Info</title>
+		<meta name="description" content="Bạn thích một cô nào đó, muốn gây ấn tượng với người ta bằng cách lên tường và Thả Hết Cảm Xúc các bài viết của cô ây. Bão Cảm Xúc Tường Bạn Bè sẽ giúp bạn thực hiện nó đơn giản thay vì đi Thả Cảm Xúc từng bài một vừa lâu vừa mất thời gian nữa." />
+		<meta name="robots" content="index, follow">
+		<meta http-equiv="content-language" content="vi" />
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<meta name="revisit-after" content="1 days" />
+		<link rel="stylesheet" href="https://codevn.info/assets/fonts/fonts/font-awesome.min.css">
+		<!-- Font Family-->
+		<link href="https://fonts.googleapis.com/css?family=Comfortaa:300,400,700" rel="stylesheet">
+		<link href="https://fonts.googleapis.com/css?family=Quicksand:400,500,700" rel="stylesheet">
+		<!-- Sidemenu Css -->
+		<link href="https://codevn.info/assets/plugins/fullside-menu/css/style.css" rel="stylesheet" />
+		<link href="https://codevn.info/assets/plugins/fullside-menu/waves.min.css" rel="stylesheet" />
+		<!-- Dashboard Css -->
+		<link href="https://codevn.info/assets/css/dashboard.css" rel="stylesheet" />
+		<link href="https://codevn.info/assets/plugins/notify/css/jquery.growl.css" rel="stylesheet" />
+		<!---Font icons-->
+				<link href="https://codevn.info/assets/plugins/iconfonts/plugin.css" rel="stylesheet" />
+		<!---Jquery-->
+		<script src="https://codevn.info/assets/js/vendors/jquery-3.2.1.min.js"></script>
+	</head>
+	<body class="" >
+<div class="page-header">
+	<h4 class="page-title">Bão Cảm Xúc Tường Bạn Bè</h4>
+</div>
+<div class="card">
+	<div class="card-header">
+		<h3 class="card-title">Bão Cảm Xúc</h3>
+	</div>
+	<div class="card-body ">
+		<div class="alert alert-info" role="alert">Bạn thích một cô nào đó, muốn gây ấn tượng với người ta bằng cách lên tường và Thả Hết Cảm Xúc các bài viết của cô ây. Bão Cảm Xúc Tường Bạn Bè sẽ giúp bạn thực hiện nó đơn giản thay vì đi Thả Cảm Xúc từng bài một vừa lâu vừa mất thời gian nữa.                            </div>
+		<div class="form-group">
+			<label class="form-label">Nhập Mã Token:</label>
+			<input type="text" class="form-control" id="token" placeholder="Nhập mã Token full quyền...">
+		</div>
+		<div class="row">
+			<div class="col-md-12  col-xl-6">
+				<div class="form-group">
+					<label class="form-label">Nhập UID Cần Bão:</label>
+					<input type="text" class="form-control" id="uid" placeholder="100005820735619">
+				</div>
+			</div>
+			<div class="col-md-12  col-xl-6">
+				<div class="form-group">
+					<label class="form-label">Số Lượng Bài Cần Bão: (Số lượng quá nhiều dễ bị Checkpoint)</label>
+					<input type="text" class="form-control" id="soluong" value="10">
+				</div>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-md-12  col-xl-6">
+				<div class="form-group">
+					<label class="form-label">Time Delay (giây):</label>
+					<input type="text" class="form-control" id="delay" value="5">
+				</div>
+			</div>
+			<div class="col-md-12  col-xl-6">
+				<div class="form-group">
+					<label class="form-label">Chọn Cảm Xúc:</label>
+					<select class="form-control" id="camxuc">
+						<option value="0">Ngẫu Nhiên</option>
+						<option value="LIKE">LIKE</option>
+						<option value="LOVE">LOVE</option>
+						<option value="HAHA">HAHA</option>
+						<option value="WOW">WOW</option>
+						<option value="SAD">SAD</option>
+						<option value="ANGRY">ANGRY</option>
+					</select>
+				</div>
+			</div>
+		</div>
+		<div class="form-group" style="display: none;" id="kq2">
+			<label class="form-label">Lịch sử:</label>
+			<textarea class="form-control" id="log" rows="10" readonly=""></textarea>
+		</div>								
+	</div>	
+	<div class="card-footer text-left">
+		<button id="submit" class="btn btn-primary">Bão Cảm Xúc</button>
+	</div>
+</div>
+
+					<script type="text/javascript">$(document).ready(function(){
+							$("#submit").click(function(){
+								$("#submit").addClass("btn-loading");
+								$("#log").val('');
+								var token = $("#token").val();
+								var uid = $("#uid").val();
+								var soluong = $("#soluong").val();
+								var delay = $("#delay").val();
+								var camxuc = $("#camxuc").val();
+								if(token == '') {
+									$.growl.warning({ title: "<strong>Lỗi !</strong>", message: "Không được để trống ô nhập Token."});
+									$("#submit").removeClass("btn-loading");
+								} else if (uid == '') {
+									$.growl.warning({ title: "<strong>Lỗi !</strong>", message: "Không được để trống ô UID."});
+									$("#submit").removeClass("btn-loading");
+								} else if (soluong < 1) {
+									$.growl.warning({ title: "<strong>Lỗi !</strong>", message: "Số lượng không được bé hơn 1."});
+									$("#submit").removeClass("btn-loading");
+								} else {
+									$.growl({ title: "<strong>Đang xử lí !</strong>", message: "Đang tiến hành xử lí xin hãy đợi..."});
+									$.get("https://graph.facebook.com/"+uid+"/feed",
+											 {limit: soluong, fields: "id", access_token: token },function(kq) {
+											 	var mdelay = delay*1000;
+												for (let i=0; i<kq.data.length; i++) {
+												    setTimeout(function timer(){
+												    	var id = kq.data[i].id;
+												    	tcamxuc(id,token,camxuc,i);
+												    	if(i == kq.data.length-1) {
+												    		$("#submit").removeClass("btn-loading");
+												    		$.growl.notice({ title: "<strong>Hoàn thành !</strong>", message: "Đã hoàn thành quá trình bão cảm xúc."});
+												    	}
+												    },i*mdelay);
+												}
+										});
+								}	
+							});
+						});
+						function tcamxuc(id,token,camxuc,i) {
+							//SET Cảm xúc
+					    	if(camxuc == 0) {
+					    		var mcamxuc = new Array("LIKE","LOVE","HAHA","WOW","SAD","ANGRY");
+					    		var rand = Math.floor(Math.random() * mcamxuc.length);
+					    		var cx = mcamxuc[rand];
+					    	} else {
+					    			cx = camxuc;
+					    	}
+					    	var link = 'https://graph.facebook.com/'+id+'/reactions?method=post&type='+cx+'&access_token='+token;
+						 	var	request = $.ajax({
+							  url: link,
+							  method: "GET",
+							  dataType: "json"
+							});	 
+							request.done(function(msg) {
+								$("#kq2").css('display','block');
+								$("#log").val('['+(Number(i)+1)+'] > '+id+' => '+msg.success+'\n'+$("#log").val());
+								console.log('> '+camxuc+' - '+id+' => '+msg.success);
+							});
+						}</script>
+
+		<!-- Dashboard js -->
+		<script src="https://codevn.info/assets/js/vendors/bootstrap.bundle.min.js"></script>
+		<script src="https://codevn.info/assets/js/vendors/jquery.sparkline.min.js"></script>
+		<script src="https://codevn.info/assets/js/vendors/selectize.min.js"></script>
+		<script src="https://codevn.info/assets/js/vendors/jquery.tablesorter.min.js"></script>
+		<script src="https://codevn.info/assets/js/vendors/circle-progress.min.js"></script>
+		<script src="https://codevn.info/assets/plugins/rating/jquery.rating-stars.js"></script>
+		<script src="https://codevn.info/assets/plugins/datatable/jquery.dataTables.min.js"></script>
+		<script src="https://codevn.info/assets/plugins/datatable/dataTables.bootstrap4.min.js"></script>
+				<!-- Fullside-menu Js-->
+		<script src="https://codevn.info/assets/plugins/fullside-menu/jquery.slimscroll.min.js"></script>
+		<script src="https://codevn.info/assets/plugins/fullside-menu/waves.min.js"></script>
+		<!-- Custom scroll bar Js-->
+		<script src="https://codevn.info/assets/plugins/scroll-bar/jquery.mCustomScrollbar.concat.min.js"></script>
+		<!-- Custom Js-->
+		<script src="https://codevn.info/assets/plugins/notify/js/jquery.growl.js"></script>
+		<script src="https://codevn.info/assets/js/custom.js"></script>
+			</body>
+</html>
