@@ -1,4 +1,4 @@
-## Spam-Facebook-Reactions
+# Spam-Facebook-Reactions
 This tool will help you spam emotions on your friends' facebook wall.<br>
 This source code is written in: HTML, Js ES6, Jquery<br>
 Code by Nguyen Ary
